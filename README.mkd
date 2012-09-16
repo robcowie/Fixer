@@ -1,0 +1,11 @@
+# Fixer (working name)
+
+A simpler, SQLAlchemy-specific fixture loader
+
+
+# Usage
+
+>>> import fixer
+>>> f = FixtureLoader(dbsession, metadata, loader=fixer.DebugLoader())
+>>> f.load(list_of_fixtures)
+
