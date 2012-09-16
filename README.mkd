@@ -5,7 +5,19 @@ A simpler, SQLAlchemy-specific fixture loader
 
 # Usage
 
+```python
 >>> import fixer
->>> f = FixtureLoader(dbsession, metadata, loader=fixer.DebugLoader())
+>>> f = FixtureLoader(metadata)
+>>> f.init_db(drop=True)
 >>> f.load(list_of_fixtures)
+```
 
+```python
+>>> f = FixtureLoader(metadata)
+>>> f.setup(list_of_fixtures)
+```
+
+```python
+>>> with FixtureLoader(metadata) as f:
+...     do_something_with_the_db()
+```
