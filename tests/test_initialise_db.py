@@ -26,7 +26,7 @@ def test_init_db():
     """The loader correctly initialises the db given a bound Metadata instance
     """
     metadata = data.Base.metadata
-    loader = fixer.Loader(data.Session, metadata)
+    loader = fixer.Loader(metadata)
 
     existing_tables = metadata.bind.table_names()
     expected_tables = metadata.tables.keys()

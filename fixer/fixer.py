@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import networkx as nx
+from sqlalchemy import orm
 
 __all__ = ['FixtureError', 'Fixture', 'FixtureProcessor', 'DebugProcessor', 'Loader']
 
@@ -50,10 +51,13 @@ class DebugProcessor(FixtureProcessor):
 
 class Loader(object):
 
-    def __init__(self, dbsession, metadata, processor=FixtureProcessor):
-        self.metadata = metadata
+    def __init__(self, metadata, dbsession=None, processor=FixtureProcessor):
+        if metadata and not dbsession:
+            dbsession = orm.scoped_session(orm.sessionmaker())
+            dbsession.configure(bind=metadata.bind)
         self.dbsession = dbsession
-        self.processor = processor(dbsession)
+        self.metadata = metadata
+        self.processor = processor(self.dbsession)
 
     def init_db(self, drop=True):
         """Create database tables, optionally droping all first
