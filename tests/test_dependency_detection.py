@@ -19,7 +19,7 @@ def test_no_dependencies():
 
     fixtures = [A, B, C]
 
-    loader = fixer.Loader(None, None, processor=fixer.DebugProcessor)
+    loader = fixer.Loader(None, dbsession=None, processor=fixer.DebugProcessor)
     deps_graph = loader.dependencies(fixtures)
 
     ## All fixtures are in the dependency graph
@@ -53,7 +53,7 @@ def test_one_level_dependencies():
 
     fixtures = [A, B, C]
 
-    loader = fixer.Loader(None, None, processor=fixer.DebugProcessor)
+    loader = fixer.Loader(None, dbsession=None, processor=fixer.DebugProcessor)
     deps_graph = loader.dependencies(fixtures)
 
     ## All fixtures are in the dependency graph
@@ -93,7 +93,7 @@ def test_two_level_dependencies():
 
     fixtures = [A, B, C]
 
-    loader = fixer.Loader(None, None, processor=fixer.DebugProcessor)
+    loader = fixer.Loader(None, dbsession=None, processor=fixer.DebugProcessor)
     deps_graph = loader.dependencies(fixtures)
 
     ## All fixtures are in the dependency graph
@@ -136,7 +136,7 @@ def test_two_level_branched_dependencies():
 
     fixtures = [A, B, C, D]
 
-    loader = fixer.Loader(None, None, processor=fixer.DebugProcessor)
+    loader = fixer.Loader(None, dbsession=None, processor=fixer.DebugProcessor)
     deps_graph = loader.dependencies(fixtures)
 
     ## All fixtures are in the dependency graph
